@@ -8,17 +8,23 @@ const updateYield = async function(event, context) {
         await getAirtableRecordIdMatchingCurrentYear(),
         await scrapeForDataMatchingCurrentYear(),
     ]
-    Promise.all(promises)
+
+    let compiled = await Promise.all(promises)
     .then((data)=> {
         console.log('then() Promise.all()')
+        return { statusCode: 200, 'data': data}
         // write Airtable record here
     })
     .catch((err)=> {
         console.log('catch() Promise.all()')
+        return { statusCode: 500, error: JSON.stringify(err)}
     })
-    // return  { statusCode: 200, data: await scrapeForDataMatchingCurrentYear() }
 }
-exports.handler = schedule("55 5 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("5 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+
+function updateAirtableRecordMatchingCurrentYear() {
+
+}
 
 async function scrapeForDataMatchingCurrentYear() {
     const endpoint = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value='
