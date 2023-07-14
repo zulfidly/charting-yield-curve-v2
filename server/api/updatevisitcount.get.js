@@ -6,7 +6,8 @@ export default defineEventHandler(async(event) => {
     let promise = new Promise(function(resolve, reject) {
         let currentCount = undefined
         let incremented = undefined
-        base('visitorcount').find(process.env.visitcount_recordId, function(err, record) {
+        base(AT_visitorcount_TABLE_ID)
+        .find(process.env.visitcount_recordId, function(err, record) {
             if (err) { 
                 console.error(err)
                 reject(err)
@@ -23,7 +24,7 @@ export default defineEventHandler(async(event) => {
 }) 
 
 function updateCount(newcount) {
-    base('visitorcount')
+    base(AT_visitorcount_TABLE_ID)
     .update([
         {
           "id": process.env.visitcount_recordId,

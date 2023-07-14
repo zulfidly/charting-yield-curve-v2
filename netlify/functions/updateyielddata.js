@@ -28,7 +28,7 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
     const recID = mergedPromise.data[0]
     const dataAT = JSON.stringify(mergedPromise.data[1])
     return await new Promise(function(resolve, reject) {
-        base('visitorcount')
+        base(process.env.AT_yearly_TABLE_ID)
         .update([
             {
             "id": recID,
