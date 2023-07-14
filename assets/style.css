@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  *::-webkit-scrollbar { /* hide scrollbar in Chrome */
+      display: none;
+    }  
+  * {
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -moz-osx-font-smoothing: grayscale;
+    transition: opacity 0.3s ease-out, background-color 0.3s ease-out;
+  }
+
+  a, p, td, th, tr, caption, button, span {
+    color: var(--color-text)
+  }
+
+  #__nuxt {
+    -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+    scrollbar-width: none;  /* hide scrollbar in Firefox */
+    width: 100vw;
+    height: 100svh;
+    margin: 0 auto;
+    padding: 1rem;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    line-height: 1.6;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+      Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+  }
+
+  @media (min-width: 1024px) {
+    #__nuxt {
+      max-width: 1280px;
+      padding: 1rem;
+    }
+  }    
+
+  :root {
+    --vt-c-white: #ffffff;
+    --vt-c-white-soft: #f8f8f8;
+    --vt-c-white-mute: #f2f2f2;
+  
+    --vt-c-black: #181818;
+    --vt-c-black-soft: #222222;
+    --vt-c-black-mute: #282828;
+  
+    --vt-c-indigo: #2c3e50;
+  
+    --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
+    --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
+    --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+    --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  
+    --vt-c-text-light-1: var(--vt-c-indigo);
+    --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
+    --vt-c-text-dark-1: var(--vt-c-white);
+    --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  
+    --convert-btn-light: #ffc881;
+    --convert-btn-dark: #792e02;
+    --swap-btn: #5d51ff;
+    --viewTTM: #0086CC;
+    --swap-duration: 0.3s; 
+  
+    --chart-text-color-dark: #b3b3b3;
+    --chart-text-color-light: #2c3e50;
+    --chart-bg-color-dark: #222222;
+    --chart-bg-color-light: #f8f8f8;
+    --chartarea-bg-color-dark: #282828;
+    --chartarea-bg-color-light: #f2f2f2;
+    --view-btn-bg-light: #B1FED8;
+    --view-btn-bg-dark: #1A7558;
+    --table-cap-light: #F2E8A2;
+    --table-cap-dark: #7F700E;
+    --table-header-light: #fae1f2;
+    --table-header-dark: #612e50;
+  }  
+  
+  /* semantic color variables for this project */
+  html {
+    --color-background: var(--vt-c-white);
+    --color-background-soft: var(--vt-c-white-soft);
+    --color-background-mute: var(--vt-c-white-mute);
+  
+    --color-border: var(--vt-c-divider-light-2);
+    --color-border-hover: var(--vt-c-divider-light-1);
+  
+    --color-heading: var(--vt-c-text-light-1);
+    --color-text: var(--vt-c-text-light-1);
+  
+    --color-bg-convert-btn: var(--convert-btn-light);
+  
+    --section-gap: 160px;
+  
+    --chart-bg: var(--chart-bg-color-light);
+    --chartarea-bg: var(--chartarea-bg-color-light);
+    --chart-text: var(--chart-text-color-light);
+    --table-header: var(--table-header-light);  
+    --view-btn: var(--view-btn-bg-light);
+    --table-cap: var(--table-cap-light);
+    --color-soft-oppo: var(--vt-c-black-soft);
+  }
+  
+  html.dark  {
+    --color-background: var(--vt-c-black);
+    --color-background-soft: var(--vt-c-black-soft);
+    --color-background-mute: var(--vt-c-black-mute);
+
+    --color-border: var(--vt-c-divider-dark-2);
+    --color-border-hover: var(--vt-c-divider-dark-1);
+
+    --color-heading: var(--vt-c-text-dark-1);
+    --color-text: var(--vt-c-text-dark-2);
+
+    --color-bg-convert-btn: var(--convert-btn-dark);
+    --chart-bg: var(--chart-bg-color-dark);
+    --chartarea-bg: var(--chartarea-bg-color-dark);
+    --chart-text: var(--chart-text-color-dark);
+    --table-header: var(--table-header-dark);
+    --color-soft-oppo: var(--vt-c-white-soft);
+    --view-btn: var(--view-btn-bg-dark);
+    --table-cap: var(--table-cap-dark);
+  }
