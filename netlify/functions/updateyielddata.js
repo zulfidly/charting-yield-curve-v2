@@ -19,8 +19,9 @@ const updateYield = async function(event, context) {
         console.log('catch() Promise.all()')
         return { statusCode: 500, error: JSON.stringify(err)}
     })
+    return compiled
 }
-exports.handler = schedule("5 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("9 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 
 function updateAirtableRecordMatchingCurrentYear() {
 
