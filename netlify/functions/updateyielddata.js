@@ -21,29 +21,32 @@ const updateYield = async function(event, context) {
     })
     return updateAirtableRecordMatchingCurrentYear(mergedPromise)
 }
-exports.handler = schedule("37 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("39 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 
 async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
-    const recID = mergedPromise[0]
-    const dataAT = JSON.stringify(mergedPromise[1].flat())
-    return await new Promise(function(resolve, reject) {
-        base('visitorcount')
-        .update([
-            {
-            "id": recID,
-            "fields": { "jsoN": dataAT }
-            }
-        ],
-        function(err, records) {
-            if (err) {
-                reject(err)
-                // console.error('updateCountError:', err);
-            return;
-            } else {
-                resolve('update successful')
-            }
-        })
-    })
+    console.log(mergedPromise);
+    console.log(mergedPromise[0]);
+    console.log(mergedPromise[1]);
+    // const recID = mergedPromise[0]
+    // const dataAT = JSON.stringify(mergedPromise[1])
+    // return await new Promise(function(resolve, reject) {
+    //     base('visitorcount')
+    //     .update([
+    //         {
+    //         "id": recID,
+    //         "fields": { "jsoN": dataAT }
+    //         }
+    //     ],
+    //     function(err, records) {
+    //         if (err) {
+    //             reject(err)
+    //             // console.error('updateCountError:', err);
+    //         return;
+    //         } else {
+    //             resolve('update successful')
+    //         }
+    //     })
+    // })
 }
 
 async function scrapeForDataMatchingCurrentYear() {
