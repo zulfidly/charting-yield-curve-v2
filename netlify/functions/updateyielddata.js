@@ -11,17 +11,16 @@ const updateYield = async function(event, context) {
 
     let mergedPromise = await Promise.all(promises)
     .then((data)=> {
-        console.log('then() Promise.all()')
         return { statusCode: 200, 'data': data}
-        // write Airtable record here
     })
     .catch((err)=> {
-        console.log('catch() Promise.all()')
         return { statusCode: 500, error: JSON.stringify(err)}
     })
     return updateAirtableRecordMatchingCurrentYear(mergedPromise)
 }
-exports.handler = schedule("10 7 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("20 14 * * 1-5", updateYield);   
+// Standard UTC cron: “At 14:20 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+// equivalent to 10:20am Washington time
 
 async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
     const recID = mergedPromise.data[0]
