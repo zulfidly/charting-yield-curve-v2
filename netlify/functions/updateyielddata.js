@@ -9,7 +9,7 @@ const updateYield = async function(event, context) {
         await scrapeForDataMatchingCurrentYear(),
     ]
 
-    let compiled = await Promise.all(promises)
+    let mergedPromise = await Promise.all(promises)
     .then((data)=> {
         console.log('then() Promise.all()')
         return { statusCode: 200, 'data': data}
@@ -19,12 +19,31 @@ const updateYield = async function(event, context) {
         console.log('catch() Promise.all()')
         return { statusCode: 500, error: JSON.stringify(err)}
     })
-    return compiled
+    return updateAirtableRecordMatchingCurrentYear(mergedPromise)
 }
-exports.handler = schedule("9 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("28 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 
-function updateAirtableRecordMatchingCurrentYear() {
-
+async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
+    const recID = mergedPromise[0]
+    const dataAT = JSON.stringify(mergedPromise[1])
+    return await new Promise(function(resolve, reject) {
+        base('visitorcount')
+        .update([
+            {
+            "id": recID,
+            "fields": { "jsoN": dataAT }
+            }
+        ],
+        function(err, records) {
+            if (err) {
+                reject(err)
+                // console.error('updateCountError:', err);
+            return;
+            } else {
+                resolve('update successful')
+            }
+        })
+    })
 }
 
 async function scrapeForDataMatchingCurrentYear() {

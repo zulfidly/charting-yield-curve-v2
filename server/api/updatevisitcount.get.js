@@ -36,5 +36,4 @@ function updateCount(newcount) {
           return;
         }
       });
-
 }
