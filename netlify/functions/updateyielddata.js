@@ -6,22 +6,19 @@ var base = new Airtable.base(process.env.AT_BASE_ID);
 const updateYield = async function(event, context) {
     let promises = [
         await getAirtableRecordIdMatchingCurrentYear(),
-        await scrapeForDataMatchingCurrentYear()
+        await scrapeForDataMatchingCurrentYear(),
     ]
-    console.log(promises);
     Promise.all(promises)
     .then((data)=> {
-        console.log('PromiseAll:', data)
-
+        console.log('then() Promise.all()')
+        // write Airtable record here
     })
     .catch((err)=> {
-        console.log(err)
+        console.log('catch() Promise.all()')
     })
-
     // return  { statusCode: 200, data: await scrapeForDataMatchingCurrentYear() }
 }
-exports.handler = schedule("21 5 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
-
+exports.handler = schedule("55 5 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 
 async function scrapeForDataMatchingCurrentYear() {
     const endpoint = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value='
@@ -34,7 +31,7 @@ async function scrapeForDataMatchingCurrentYear() {
     })
     .catch((err)=> {
         console.log('catch() scrapeForDataMatchingCurrentYear');
-        return { statusCode: 500, error: err }
+        return { statusCode: 500, error: 'catch() scrapeForDataMatchingCurrentYear' }
     })
 }
 
@@ -48,8 +45,11 @@ async function getAirtableRecordIdMatchingCurrentYear() {
             if (err) reject(err)
             else {
                 records.forEach(function(record, ind) {                    
-                    if(yearUTC.toString() === record.get('year').toString()) recordID = record.id
-                    console.log('recordID: ', recordID);
+                    if(yearUTC.toString() === record.get('year').toString()) {
+                        recordID = record.id
+                        console.log('recordID:', recordID, '| yearUTC:', yearUTC);
+                        // recHg1LDcJZ8kN4SC
+                    }
                 });
                 resolve(recordID)
             }
