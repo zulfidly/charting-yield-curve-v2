@@ -49,7 +49,9 @@ async function getAirtableRecordIdMatchingCurrentYear() {
                     if(yearUTC.toString() === record.get('year').toString()) {
                         recordID = record.id
                         console.log('recordID:', recordID, '| yearUTC:', yearUTC);
-                        // recHg1LDcJZ8kN4SC
+                        // if not
+                    } else {
+                        // when no matches i.e: it's a new year
                     }
                 });
                 resolve(recordID)
@@ -106,12 +108,10 @@ function getRowsFromTable(string) {
     let balstr = string.toString()
     let temp = []
     let qtyOfRows = findQTYofRows(stringSlicer(string, '<tbody>', '</tbody>'))
-    // console.log('qtyOfRows: ', qtyOfRows);
     for(let i=0; i< qtyOfRows; i++) {
         let obj = { 'rowData' : stringSlicer(balstr, '<tr', '</tr>') }      
         temp.push(obj)
         balstr = balstr.slice(balstr.indexOf('</tr>')+5, balstr.length+1)
-        // console.log(balstr);
     }
     return temp
 }
@@ -136,106 +136,106 @@ function stringSlicer(string, startMarker, endMarker) {
 }
 function findQTYofRows(str) {
     let qty = str.match(/<\/tr>/ig)
-    return qty.length
+    return qty.length || 0
 }
 function getCellData(tag, str) {
     if(tag=='time') {
         let marker = '</time>'
         let x = str.slice( str.indexOf(marker)-10, str.indexOf(marker) )
-        return x
+        return x || '_invalid'
     }
     else if(tag=='1month') {
         let marker = '<tdclass="bc1monthviews-fieldviews-field-field-bc-1month"headers="view-field-bc-1month-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='2month') {
         let marker = '<tdclass="bc2monthviews-fieldviews-field-field-bc-2month"headers="view-field-bc-2month-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='3month') {
         let marker = '<tdclass="bc3monthviews-fieldviews-field-field-bc-3month"headers="view-field-bc-3month-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='4month') {
         let marker = '<tdclass="bc4monthviews-fieldviews-field-field-bc-4month"headers="view-field-bc-4month-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='6month') {
         let marker = '<tdheaders="view-field-bc-6month-table-column"class="views-fieldviews-field-field-bc-6month">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='1year') {
         let marker = '<tdheaders="view-field-bc-1year-table-column"class="views-fieldviews-field-field-bc-1year">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='2year') {
         let marker = '<tdheaders="view-field-bc-2year-table-column"class="views-fieldviews-field-field-bc-2year">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='3year') {
         let marker = '<tdclass="bc3monthviews-fieldviews-field-field-bc-3year"headers="view-field-bc-3year-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='5year') {
         let marker = '<tdheaders="view-field-bc-5year-table-column"class="views-fieldviews-field-field-bc-5year">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='7year') {
         let marker = '<tdheaders="view-field-bc-7year-table-column"class="views-fieldviews-field-field-bc-7year">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='10year') {
         let marker = '<tdheaders="view-field-bc-10year-table-column"class="views-fieldviews-field-field-bc-10year">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='20year') {
         let marker = '<tdclass="bc20yearviews-fieldviews-field-field-bc-20year"headers="view-field-bc-20year-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else if(tag=='30year') {
         let marker = '<tdclass="bc30yearviews-fieldviews-field-field-bc-30year"headers="view-field-bc-30year-table-column">'
         let x = str.indexOf(marker)
         let y = str.slice(marker.length + x, marker.length + x+8)
         let z = y.replace(/[<td/>]/ig, '')
-        return z        
+        return z || '_invalid'        
     }
     else {
-        return 'invalid'
+        return 'invalid_'
     }
 }
