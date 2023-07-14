@@ -21,7 +21,7 @@ const updateYield = async function(event, context) {
     })
     return updateAirtableRecordMatchingCurrentYear(mergedPromise)
 }
-exports.handler = schedule("51 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("59 6 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 
 async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
     // console.log(mergedPromise);
