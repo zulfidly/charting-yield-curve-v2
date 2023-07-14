@@ -38,7 +38,3 @@ function updateCount(newcount) {
       });
 
 }
-
-function testLog() {
-    console.log('callbackkkk');
-}
