@@ -24,7 +24,7 @@
     -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
     scrollbar-width: none;  /* hide scrollbar in Firefox */
     width: 100vw;
-    height: 100svh;
+    /* height: 100svh; */
     margin: 0 auto;
     padding: 1rem;
     font-weight: normal;

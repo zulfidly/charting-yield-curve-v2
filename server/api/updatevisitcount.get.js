@@ -24,17 +24,17 @@ export default defineEventHandler(async(event) => {
 }) 
 
 function updateCount(newcount) {
-    base(process.env.AT_visitorcount_TABLE_ID)
-    .update([
-        {
-          "id": process.env.visitcount_recordId,
-          "fields": { "visitcount": newcount }
-        }
-      ],
-      function(err, records) {
-        if (err) {
-          console.error('updateCountError:', err);
-          return;
-        }
-      });
+  base(process.env.AT_visitorcount_TABLE_ID)
+  .update([
+      {
+        "id": process.env.visitcount_recordId,
+        "fields": { "visitcount": newcount }
+      }
+    ],
+    function(err, records) {
+      if (err) {
+        console.error('updateCountError:', err);
+        return;
+      }
+    });
 }

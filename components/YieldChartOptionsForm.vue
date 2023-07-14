@@ -16,7 +16,7 @@
             type: Array, default: [], required: true
         },
     })
-    const emiT = defineEmits(['viewTable', 'viewChart', 'updatechartData', 'updatetableData', 'updateisFetching', 'updateselectedYear'])  
+    const emiT = defineEmits(['viewChart', 'updatechartData', 'updatetableData', 'updateisFetching', 'updateselectedYear'])  
     const endYear = new Date().getFullYear()
     const startYear = 1990      // earliest data available on the Treasury website
     const arrYearDropList = ref([])     // in numbers

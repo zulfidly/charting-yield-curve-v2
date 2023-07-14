@@ -47,8 +47,8 @@
         <div class="text-center mx-auto rounded-lg transition-all duration-700" @scroll="vListMarker" v-bind="containerProps" :style="ctnrPropsHeight">
             <p class="bg-[--table-cap]">Summary Data (in %)</p> 
             <div class="inline-block w-full" ref="vListRef" v-bind="wrapperProps">
-                <section class="table-row sticky top-0 bg-rose-300 [&>*]:px-2  [&>*]:lg:px-20 bg-[var(--color-background-mute)]">
-                    <p class="table-cell">Date</p>
+                <section class="table-row sticky top-0 bg-rose-300 [&>*]:px-2 [&>*]:align-middle [&>*]:lg:px-20 bg-[var(--color-background-mute)]">
+                    <p class="table-cell ">Date</p>
                     <p class="table-cell">10yr</p>
                     <p class="table-cell">2yr</p>
                     <p class="table-cell">3mth</p>

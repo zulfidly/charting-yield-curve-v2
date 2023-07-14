@@ -1,4 +1,21 @@
-# [Netlify scheduled Web Scraping](https://exp-scraper-fidly.netlify.app/)
+# US Treasury yield difference chartings
+- to spot curve inversion points
+
+## Netlify demo [version 2](https://yield-diff-at-fidly.netlify.app/)
+
+## to see version 1 :
+- see [version 1 demo](https://ust-yield-chart-fidly.netlify.app/) Netlify demo (prone to fetch failure due to CORS violation )
+- see [version 1 repo](https://github.com/zulfidly/charting-yield-curve) repo
+
+## Objective
+- to improve modularity of each components with  ```defineExpose({})```
+- to improve data type(ing) and modularity with ```defineProps({})``` for data consuming components
+- to improve modularity with ```defineEmits([])``` for data mutating components
+- data type(ing) with ```defineProps({})```
+- to limit state mutations to within Pinia only, due to it's ```actions()``` feature
+- utilising Airtable for cloud data storage and data updating
+- Netlify function for data scraping automations
+- large data presentation with virtual listed table and Google chart
 
 ## Install Nuxt
 - ```npx nuxi@latest init <project-name>```
@@ -6,14 +23,6 @@
 - ```npm install```
 - ```npm run dev -- -o``` (this opens new browser)
 - ```nuxt.config.ts``` renamed to ```.js```
-
-## exposing child methods to parent script setup and template
-
-## data type(ing) with defineProps({})
-
-## enhancing modularity of components
-- defineProps({}) for data consuming components
-- defineEmits([]) for data mutating components
 
 ## Adding Tailwind CSS 
 - ```npm install -D @nuxtjs/tailwindcss```
@@ -28,14 +37,16 @@
 - ```export const useMainStorePinia = defineStore('appStore', {})```, dir: ```./composables/mainState.js``` 
 - see ```@pinia/nuxt``` in nuxt.config.js
 - see ```overrides``` added to package.json
+- see ```./composables/mainState.js```
 
 ## add [Airtable](https://www.airtable.com/)
 - ```npm install airtable```
 
-## add Netlify's scheduled functions cron runner ```npm install @netlify/functions``` 
+## add [Netlify Function](https://www.netlify.com/products/functions/)
+- ```npm install @netlify/functions``` 
 - ```import { schedule } from "@netlify/functions"```
-- Standard [cron](https://crontab.guru/) (UTC by default): “At minute 30 past hour 5 and 10 on every day-of-week from Monday through Friday.”
-- ```exports.handler = schedule("30 5,10 * * 1-5", handler);```, translates to 1:30pm & 6:30pm GMT+8, Mon-Fri
+- Standard [cron](https://crontab.guru/)
+- CRON runner : ```exports.handler = schedule("20 14 * * 1-5", updateYield)```, “At 14:20 on every day-of-week from Monday through Friday.” (equivalent to 10:20am, GMT-4 US)
 - ```return { statusCode: 200 }``` or ```return { statusCode: 500 }``` required
 - create directory at root : ```netlify/functions```
 - Note that scheduled functions don’t work with payloads or POST request data. When you need to work with payloads, you should use either a synchronous or background function instead.
@@ -46,6 +57,8 @@
 ## add VueUse for access to Vue3 friendly composables
 - ```npm i -D @vueuse/nuxt @vueuse/core```
 - see ```@vueuse/nuxt``` in nuxt.config.js
+- see ```useEventListener()```
+- see ```useVirtualList()```, used to minimise number of rendered DOMs in the table (virtual scrolling)
 
 ## 'dark' class 
 - see ```darkMode: 'class'```, inside tailwind.config.js

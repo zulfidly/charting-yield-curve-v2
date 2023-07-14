@@ -22,7 +22,6 @@ exports.handler = schedule("20 14 * * 1-5", updateYield);
 // Standard UTC cron: “At 14:20 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 // equivalent to 10:20am Washington time
 
-
 async function scrapeForDataMatchingCurrentYear() {
     const endpoint = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value='
     const yearUTC = new Date().getUTCFullYear().toString()
