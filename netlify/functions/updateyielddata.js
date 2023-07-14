@@ -17,4 +17,4 @@ const updateYield = async function(event, context) {
     // })
 
 }
-exports.handler = schedule("6 4 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
+exports.handler = schedule("15 4 * * 1-5", updateYield);   // Standard UTC cron: “At 10:30 on every day-of-week from Monday through Friday.”   https://crontab.guru/
