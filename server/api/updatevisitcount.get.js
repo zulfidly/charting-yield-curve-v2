@@ -24,7 +24,7 @@ export default defineEventHandler(async(event) => {
 }) 
 
 function updateCount(newcount) {
-    base(AT_visitorcount_TABLE_ID)
+    base(process.env.AT_visitorcount_TABLE_ID)
     .update([
         {
           "id": process.env.visitcount_recordId,

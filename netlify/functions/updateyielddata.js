@@ -22,27 +22,6 @@ exports.handler = schedule("20 14 * * 1-5", updateYield);
 // Standard UTC cron: “At 14:20 on every day-of-week from Monday through Friday.”   https://crontab.guru/
 // equivalent to 10:20am Washington time
 
-async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
-    const recID = mergedPromise.data[0]
-    const dataAT = JSON.stringify(mergedPromise.data[1])
-    return await new Promise(function(resolve, reject) {
-        base(process.env.AT_yearly_TABLE_ID)
-        .update([
-            {
-            "id": recID,
-            "fields": { "jsoN": dataAT }
-            }
-        ],
-        function(err, records) {
-            if (err) {
-                reject({ statusCode: 500, body:JSON.stringify(err) })
-            return;
-            } else {
-                resolve({ statusCode: 200, body:'update successful' })
-            }
-        })
-    })
-}
 
 async function scrapeForDataMatchingCurrentYear() {
     const endpoint = 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value='
@@ -58,7 +37,6 @@ async function scrapeForDataMatchingCurrentYear() {
         return { statusCode: 500, error: 'catch() scrapeForDataMatchingCurrentYear' }
     })
 }
-
 async function getAirtableRecordIdMatchingCurrentYear() {
     let yearUTC = new Date().getUTCFullYear()
     let recordID = undefined
@@ -80,7 +58,27 @@ async function getAirtableRecordIdMatchingCurrentYear() {
         });
     })
 }
-
+async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
+    const recID = mergedPromise.data[0]
+    const dataAT = JSON.stringify(mergedPromise.data[1])
+    return await new Promise(function(resolve, reject) {
+        base(process.env.AT_yearly_TABLE_ID)
+        .update([
+            {
+            "id": recID,
+            "fields": { "jsoN": dataAT }
+            }
+        ],
+        function(err, records) {
+            if (err) {
+                reject({ statusCode: 500, body:JSON.stringify(err) })
+            return;
+            } else {
+                resolve({ statusCode: 200, body:'update successful' })
+            }
+        })
+    })
+}
 
 function structurePerDayObj(arr) {
     let tempArr = []
