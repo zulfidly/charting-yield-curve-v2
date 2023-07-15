@@ -23,9 +23,6 @@ export default defineEventHandler(async(event) => {
 }) 
 
 function updateCount(newcount) {
-  Airtable.configure({ endpointUrl: 'https://api.airtable.com', apiKey: process.env.AT_TOKEN });
-var base = new Airtable.base(process.env.AT_BASE_ID);
-
   base(process.env.AT_visitorcount_TABLE_ID)
   .update([
       {
