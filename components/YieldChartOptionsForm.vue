@@ -35,7 +35,6 @@
 
     async function fetchDataFromAirtable(btnType) {
         let temp = await useFetch('/api/getTable', { query: { userOptedYr: yearRange.value.toString() } })
-
         console.log('fetchDataFromAirtable', temp);
         return { data: temp, btn: btnType }
     }
