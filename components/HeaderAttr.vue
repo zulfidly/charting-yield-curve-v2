@@ -11,7 +11,7 @@
                 </button>
                 Difference Charting
             </h2>
-            <h3 class="text-sm font-light italic">*see curve inversion points</h3>
+            <h3 class="text-sm font-light italic">*this is a coding practice</h3>
         </section>
         <section>
             <IconGitHubButton />
