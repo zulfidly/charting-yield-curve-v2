@@ -3,7 +3,6 @@ import Airtable from 'airtable'
 export default defineEventHandler(async(event) => {
     let years = getQuery(event).userOptedYr
     years = years.split(',')
-    console.log(years, typeof years);
     return await readTable1(years)
 }) 
 
@@ -23,7 +22,6 @@ export async function readTable1(years) {
                         temp.push({ year: record._rawJson.fields.year, datA: record._rawJson.fields.jsoN || '' })
                         // temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
                     } 
-
                 });
                 if(temp.length === 0) resolve( { year:'0', datA:"no data"} )
                 else resolve(temp)

@@ -15,12 +15,12 @@
     setTimeout(() => {      
       displayMessageBoard('Welcome 🎵')
     }, 500);
-    // useFetch('/api/getOtherInfo') 
+    let dummy = await useFetch('/api/getOtherInfo') 
     getLastYieldUpdateOnMounted()
   })
   async function getLastYieldUpdateOnMounted() {
     let temp = await useFetch('/api/getLastYieldUpdate')
-    // console.log('lastUpdate:', temp);
+    console.log('lastUpdate:', temp);
     temp = JSON.parse(temp.data.value)
     lastYieldUpdate.value = new Date(temp.utc_ms)
   }
