@@ -3,7 +3,7 @@ import Airtable from 'airtable'
 export default defineEventHandler(async(event) => {
     let years = getQuery(event).userOptedYr
     years = years.split(',')
-    console.log(years);
+    console.log(years, typeof years);
     return await readTable1(years)
 }) 
 
@@ -18,13 +18,14 @@ export async function readTable1(years) {
             else {
                 let temp = []
                 records.forEach(function(record, ind) {         
-                    console.log(record);           
-                    if(years.includes(record.get('year'))) {
+                    console.log(record.get('year'), typeof record.get('year'));           
+                    if(years.includes(record.get('year').trim())) {
                         temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
                     } 
 
                 });
-                resolve(temp)
+                if(temp.length === 0) resolve( { year:'0', datA:"no data"} )
+                else resolve(temp)
             }
         });
     })
