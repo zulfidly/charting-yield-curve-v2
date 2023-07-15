@@ -1,4 +1,5 @@
 <script setup>
+  const lastYieldUpdate = ref(await useFetch('/api/getLastYieldUpdate'))
   const exposeGoogChartRef = ref(null)
   const exposeMessageBoardRef = ref(null)
   const appStore = useMainStorePinia()
@@ -14,8 +15,14 @@
     setTimeout(() => {      
       displayMessageBoard('Welcome 🎵')
     }, 500);
-    useFetch('/api/updatevisitcount') 
+    useFetch('/api/getOtherInfo') 
+    getLastYieldUpdateOnMounted()
   })
+  function getLastYieldUpdateOnMounted() {
+    let temp = JSON.parse(lastYieldUpdate.value.data)
+    lastYieldUpdate.value = new Date(temp.utc_ms)
+    console.log(lastYieldUpdate.value);
+  }
 
   onNuxtReady(()=> {  // hydrated
     console.log('Nuxt hydrated');
@@ -42,6 +49,7 @@
     appStore.m_userScrIsMobileLandscape()
     appStore.m_userScrOrientation()
     appStore.m_userScrRatioWH()
+    appStore.m_listenIsDark()
   }
 </script>
 
@@ -50,7 +58,7 @@
     <Notifier 
       ref="exposeMessageBoardRef"
     />
-
+    <HeaderAttr v-show="!appStore.userScr.isMobileLandscape" />
     <GoogleChartContainer
       ref="exposeGoogChartRef"
       :prop-chart-data="appStore.chartData"
@@ -70,12 +78,14 @@
       @updatechart-data="appStore.buildChartData()"
       @updateselected-year="(years)=> appStore.updateSelectedYear(years)"
     />
+    <div v-show="!appStore.userScr.isMobileLandscape" class="pl-2 text-[11px] lg:text-sm text-right italic font-thin">
+      updated: {{ lastYieldUpdate }}
+    </div>
 
     <TableSummary 
       :prop-table-data="appStore.tableData"
       :prop-is-mobile-landscape="appStore.userScr.isMobileLandscape"
       :prop-scr-h="appStore.userScr.H"
     />
-
   </div>
 </template>

@@ -67,7 +67,7 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
         .update([
             {
             "id": recID,
-            "fields": { "jsoN": dataAT }
+            "fields": { "jsoN": dataAT }        // can change jsoN to env ?
             }
         ],
         function(err, records) {
@@ -76,9 +76,27 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
             return;
             } else {
                 resolve({ statusCode: 200, body:'update successful' })
+                updateLastYieldUpdateFieldInOtherInfo()
             }
         })
     })
+}
+
+function updateLastYieldUpdateFieldInOtherInfo() {
+    let date = { 'utc' : new Date(), 'utc_ms': Date.now() }
+    base(process.env.AT_visitorcount_TABLE_ID)
+    .update([
+        {
+          "id": process.env.otherInfo_recordId,
+          "fields": { 'lastYieldUpdate': JSON.stringify(date) }   // date/time in UTC
+        }
+      ],
+      function(err, records) {
+        if (err) {
+          console.error('updateDateError:', err);
+          return;
+        }
+    });  
 }
 
 function structurePerDayObj(arr) {

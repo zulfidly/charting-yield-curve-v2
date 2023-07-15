@@ -7,7 +7,8 @@
 - see [version 1 demo](https://ust-yield-chart-fidly.netlify.app/) Netlify demo (prone to fetch failure due to CORS violation )
 - see [version 1 repo](https://github.com/zulfidly/charting-yield-curve) repo
 
-## Objective
+## Design Principles 
+- to limit data channeling/directing only to ```app.vue```` 
 - to improve modularity of each components with  ```defineExpose({})```
 - to improve data type(ing) and modularity with ```defineProps({})``` for data consuming components
 - to improve modularity with ```defineEmits([])``` for data mutating components

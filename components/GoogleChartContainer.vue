@@ -50,11 +50,16 @@
   const emiT = defineEmits(['isChartShown'])
   onMounted(()=> {
     // console.log(googchartTemplateRef.value);
-    useEventListener(window.matchMedia("(prefers-color-scheme:dark)"), 'change', ()=>{      // if dark mode is true
+    useEventListener(window.matchMedia("(prefers-color-scheme:dark)"), 'change', ()=>{    
+      let isDark = window.matchMedia("(prefers-color-scheme:dark)").matches
       if(props.propIsChartShowing) {
+      
+      // if(isDark) {
         showGoogChart()
-        document.querySelector('html').classList.toggle('dark')
-      } else return
+        // document.querySelector('html').classList.add('dark')
+
+      }
+      // } else return
     })
     useEventListener('resize', ()=>{
       if(props.propIsChartShowing) showGoogChart()

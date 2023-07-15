@@ -7,13 +7,12 @@ export default defineEventHandler(async(event) => {
     let currentCount = undefined
     let incremented = undefined
     base(process.env.AT_visitorcount_TABLE_ID)
-    .find(process.env.visitcount_recordId, function(err, record) {
+    .find(process.env.otherInfo_recordId, function(err, record) {
       if (err) { 
         console.error(err)
         reject(err)
       } else {
-        // console.log('Retrieved', record.fields.visitcount);
-        currentCount = record.fields.visitcount * 1
+        currentCount = record.fields.visitorCount * 1
         incremented = (currentCount + 1).toString()
         resolve(incremented)
         updateCount(incremented)
@@ -27,8 +26,8 @@ function updateCount(newcount) {
   base(process.env.AT_visitorcount_TABLE_ID)
   .update([
       {
-        "id": process.env.visitcount_recordId,
-        "fields": { "visitcount": newcount }
+        "id": process.env.otherInfo_recordId,
+        "fields": { 'visitorCount': newcount }
       }
     ],
     function(err, records) {

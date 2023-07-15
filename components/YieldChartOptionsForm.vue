@@ -36,7 +36,7 @@
     async function fetchDataFromAirtable(btnType) {
         return {
             data: await useFetch(
-                '/api/gettable', 
+                '/api/getTable', 
                 {  query: {  userOptedYr:  yearRange.value.toString()  } }
             ),
             btn: btnType

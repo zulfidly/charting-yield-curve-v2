@@ -1,7 +1,7 @@
 <template>
     <button aria-label="visit git hub repository">
-        <a href="https://yield-diff-at-fidly.netlify.app/" target="_blank" aria-label="visit git hub repository">
-            <svg class="transition-all duration-300" fill="var(--color-border)"  x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+        <a href="https://github.com/zulfidly/charting-yield-curve-v2" target="_blank" aria-label="visit git hub repository">
+            <svg class="transition-all duration-300" fill="var(--color-text)"  x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                 <g>
                     <path d="M20,0C9.236,0,0.516,8.956,0.516,20c0,11.046,8.726,20,19.484,20c10.764,0,19.484-8.953,19.484-20
                         C39.484,8.956,30.764,0,20,0z M25.85,37.963c-0.938,0.188-1.27-0.402-1.27-0.91c0-0.619,0.021-2.66,0.021-5.191
