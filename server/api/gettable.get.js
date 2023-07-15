@@ -14,11 +14,15 @@ export async function readTable1(years) {
         base(process.env.AT_yearly_TABLE_ID)
         .select({ view: 'Grid view' })
         .firstPage(function(err, records) {     // 100 records per page by default
-            if (err) reject({statusCode: 500, "error": JSON.stringify(err)})
+            if(err) reject({statusCode: 500, "erroR": JSON.stringify(err)})
             else {
                 let temp = []
-                records.forEach(function(record, ind) {                    
-                    if(years.includes(record.get('year'))) temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
+                records.forEach(function(record, ind) {         
+                    console.log(record);           
+                    if(years.includes(record.get('year'))) {
+                        temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
+                    } 
+
                 });
                 resolve(temp)
             }
