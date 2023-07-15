@@ -65,6 +65,7 @@
         }
     }
     function userSubmission(dataReceivedFromServer) {
+        console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.data.data._rawValue
         let temp = []
         arr.forEach((obj, ind)=> {

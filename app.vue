@@ -3,6 +3,9 @@
   const exposeGoogChartRef = ref(null)
   const exposeMessageBoardRef = ref(null)
   const appStore = useMainStorePinia()
+  const errBoard = reactive({
+    arrYear: []
+  })
 
   useHead({
     title: 'Yield Curve Difference',
@@ -60,6 +63,7 @@
       ref="exposeMessageBoardRef"
     />
     <HeaderAttr v-if="!appStore.userScr.isMobileLandscape" />
+
     <GoogleChartContainer
       ref="exposeGoogChartRef"
       :prop-chart-data="appStore.chartData"
@@ -90,5 +94,8 @@
       :prop-is-mobile-landscape="appStore.userScr.isMobileLandscape"
       :prop-scr-h="appStore.userScr.H"
     />
+    <section>
+      <p>{{ errBoard.arrYear }}</p>
+    </section>
   </div>
 </template>
