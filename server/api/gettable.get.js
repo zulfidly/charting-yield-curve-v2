@@ -23,7 +23,7 @@ export async function readTable1(years) {
                             // temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
                         } 
                     });
-                if(temp.includes('DOCTYPE')) reject('request rejected')
+                if(temp.includes('<!DOCTYPE')) reject('request rejected')
                 else resolve(temp)
             }
         });
