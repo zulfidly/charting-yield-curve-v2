@@ -13,7 +13,7 @@ export async function readTable1(years) {
         base(process.env.AT_yearly_TABLE_ID)
         .select({ view: 'Grid view' })
         .firstPage(function(err, records) {     // 100 records per page by default
-            if (err) reject(err)
+            if (err) reject({statusCode: 500, "error": JSON.stringify(err)})
             else {
                 let temp = []
                 records.forEach(function(record, ind) {                    
