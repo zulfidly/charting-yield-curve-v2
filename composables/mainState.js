@@ -30,7 +30,7 @@ export const useMainStorePinia = defineStore('appStore', {
         m_userScrIsMobileLandscape() { this.userScr.isMobileLandscape = getIsMobileLandscapeStatus() },
         m_userScrOrientation() { this.userScr.orientation = window.screen.orientation.type },
         m_userScrRatioWH() { this.userScr.ratioWH = (window.screen.width / window.screen.height).toFixed(2) * 1 },
-        m_listenIsDark() { listenIsDark() },
+        // m_listenIsDark() { listenIsDark() },
         buildTableData(data) {  this.tableData = data },
         buildChartData() {
             let arr = this.tableData

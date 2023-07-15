@@ -50,7 +50,7 @@
     appStore.m_userScrIsMobileLandscape()
     appStore.m_userScrOrientation()
     appStore.m_userScrRatioWH()
-    appStore.m_listenIsDark()
+    // appStore.m_listenIsDark()
   }
 </script>
 
@@ -81,10 +81,8 @@
     />
     <div
       v-show="!appStore.userScr.isMobileLandscape"
-      class="pl-2 text-[11px] lg:text-sm text-right italic font-thin"
-      
-      >
-        updated: {{ lastYieldUpdate }}
+      class="pl-2 text-[11px] lg:text-sm text-right italic font-thin" >
+      updated: {{ lastYieldUpdate }}
     </div>
 
     <TableSummary 

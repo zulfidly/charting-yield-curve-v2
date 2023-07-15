@@ -58,7 +58,7 @@
         else {
             emiT('updateisFetching', true)
             emiT('updateselectedYear', yearRange.value)
-            userSubmission(await fetchDataFromAirtable())
+            userSubmission(await fetchDataFromAirtable(btnType))
             if(btnType === 'viewChart' && props.propIsChartShowing === false) {
                 emiT('viewChart') // display chart
             }
