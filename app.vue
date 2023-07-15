@@ -1,5 +1,5 @@
 <script setup>
-  const lastYieldUpdate = ref('')
+  const lastYieldUpdate = ref('retrieving')
   const exposeGoogChartRef = ref(null)
   const exposeMessageBoardRef = ref(null)
   const appStore = useMainStorePinia()
@@ -20,6 +20,7 @@
   })
   async function getLastYieldUpdateOnMounted() {
     let temp = await useFetch('/api/getLastYieldUpdate')
+    // console.log('lastUpdate:', temp);
     temp = JSON.parse(temp.data.value)
     lastYieldUpdate.value = new Date(temp.utc_ms)
   }
@@ -50,9 +51,6 @@
     appStore.m_userScrOrientation()
     appStore.m_userScrRatioWH()
     appStore.m_listenIsDark()
-  }
-  function test() {
-    console.log('fgasdgaagasdg');
   }
 </script>
 
