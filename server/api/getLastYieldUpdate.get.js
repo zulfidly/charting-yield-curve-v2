@@ -11,8 +11,8 @@ export async function readDate() {
         base(process.env.AT_visitorcount_TABLE_ID)
         .find(process.env.otherInfo_recordId, function(err, record) {
           if (err) { 
-            console.error(err)
-            reject(err)
+            // console.error(err)
+            reject( { statusCode:500, error:JSON.stringify(err) } )
           } else {
             let retrieveDate = record.fields.lastYieldUpdate
             resolve(retrieveDate.toString())

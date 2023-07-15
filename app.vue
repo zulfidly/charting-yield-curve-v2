@@ -15,7 +15,7 @@
     setTimeout(() => {      
       displayMessageBoard('Welcome 🎵')
     }, 500);
-    useFetch('/api/getOtherInfo') 
+    // useFetch('/api/getOtherInfo') 
     getLastYieldUpdateOnMounted()
   })
   async function getLastYieldUpdateOnMounted() {
