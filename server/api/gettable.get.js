@@ -26,7 +26,8 @@ export async function readTable1(years) {
                 if(temp.includes('<!DOCTYPE')) reject('request rejected')
                 else resolve(temp)
             }
-        });
+        })
     })
+    console.log(await promise);
     return await promise
 }
