@@ -34,13 +34,11 @@
     }))
 
     async function fetchDataFromAirtable(btnType) {
-        return {
-            data: await useFetch(
-                '/api/getTable', 
-                {  query: {  userOptedYr:  yearRange.value.toString()  } }
-            ),
-            btn: btnType
-        }
+        let temp = await useFetch(
+                        '/api/getTable', 
+                        {  query: {  userOptedYr:  yearRange.value.toString()  } }
+                    )
+        return { data: temp, btn: btnType }
     }
 
     async function submitUserOptions(btnType) {
