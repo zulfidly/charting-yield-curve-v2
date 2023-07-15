@@ -42,7 +42,7 @@
 </script>
 
 <template>
-    <div class="mt-3 flex flex-col w-full rounded-md">
+    <div class="mt-3 sm:mt-0 flex flex-col w-full rounded-md">
         <div class="fixed bottom-0 right-0 text-xs">{{ changeindicator }}</div>
         <div class="text-center mx-auto rounded-lg transition-all duration-700" @scroll="vListMarker" v-bind="containerProps" :style="ctnrPropsHeight">
             <p class="bg-[--table-cap]">Summary Data (in %)</p> 
