@@ -18,9 +18,10 @@ export async function readTable1(years) {
             else {
                 let temp = []
                 records.forEach(function(record, ind) {         
-                    console.log(record.get('year'), typeof record.get('year'));           
+                    // console.log(record.get('year'), typeof record.get('year'));           
                     if(years.includes(record.get('year').trim())) {
-                        temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
+                        temp.push({ year: record._rawJson.fields.year, datA: record._rawJson.fields.jsoN || '' })
+                        // temp.push({ year: record.get('year'), datA: record._rawJson.fields.jsoN || '' })
                     } 
 
                 });
