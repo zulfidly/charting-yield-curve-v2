@@ -3,6 +3,7 @@ import Airtable from 'airtable'
 export default defineEventHandler(async(event) => {
     let years = getQuery(event).userOptedYr
     years = years.split(',')
+    console.log(years);
     return await readTable1(years)
 }) 
 
