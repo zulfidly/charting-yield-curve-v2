@@ -2,8 +2,10 @@
 - charting inversion points
 
 ## Netlify demo [version 2](https://yield-diff-at-fidly.netlify.app/)
-- Problem(15/Jul/2023): returned data from Airtable not as expected (was working normally the day before hitting the automation monthly 100 limit)
-- working fine on locally i.e: ```npm run dev```
+
+## Issue (upon deployment, it's running fine on ```npm run dev```)
+- Problem(15/Jul/2023): returned data from Airtable/Netlify not as expected (was working normally the day before hitting the automation monthly 100 limit)
+- Netlify not able to execute scheduled web scraping 
 
 ## to see version 1 :
 - see [version 1 demo](https://ust-yield-chart-fidly.netlify.app/) Netlify demo (prone to fetch failure due to CORS violations )

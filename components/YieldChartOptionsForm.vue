@@ -58,8 +58,7 @@
     function userSubmission(dataReceivedFromServer) {
         console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.yields.data.value
-        if(typeof arr === 'string') emiT('notifyMsgIs', "Work in progress 😅")
-        if(typeof arr === 'string') emiT('notifyMsgIs', "Work in progress 😅")
+        if(typeof arr === 'string') emiT('notifyMsgIs', "Data is bad 😅")
         if(typeof arr === 'string') return
         
         let temp = []
