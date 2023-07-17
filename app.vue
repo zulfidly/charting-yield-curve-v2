@@ -78,6 +78,7 @@
       @updatetable-data="(data)=> appStore.buildTableData(data)"
       @updatechart-data="appStore.buildChartData()"
       @updateselected-year="(years)=> appStore.updateSelectedYear(years)"
+      @notify-msg-is="(txt)=> displayMessageBoard(txt)"
     />
     <div
       v-show="!appStore.userScr.isMobileLandscape"

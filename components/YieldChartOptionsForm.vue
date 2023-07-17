@@ -16,7 +16,7 @@
             type: Array, default: [], required: true
         },
     })
-    const emiT = defineEmits(['viewChart', 'updatechartData', 'updatetableData', 'updateisFetching', 'updateselectedYear'])  
+    const emiT = defineEmits(['viewChart', 'updatechartData', 'updatetableData', 'updateisFetching', 'updateselectedYear' ,'notifyMsgIs'])  
     const endYear = new Date().getFullYear()
     const startYear = 1990      // earliest data available on the Treasury website
     const arrYearDropList = ref([])     // in numbers
@@ -59,6 +59,9 @@
     function userSubmission(dataReceivedFromServer) {
         console.log('userSubmission:', dataReceivedFromServer.yields.data.value);
         let arr = dataReceivedFromServer.yields.data.value
+        if(typeof arr === 'string') emiT('notifyMsgIs', "Work in progress 😅")
+        if(typeof arr === 'string') return
+        
         let temp = []
         arr.forEach((obj, ind)=> {
             temp.push(JSON.parse(obj.yieldData))
