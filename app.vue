@@ -1,7 +1,7 @@
 <script setup>
   const lastYieldUpdate = ref('retrieving')
   const exposeGoogChartRef = ref(null)
-  const exposeMessageBoardRef = ref(null)
+  const exposeNotifierRef = ref(null)
   const appStore = useMainStorePinia()
 
   useHead({
@@ -12,9 +12,7 @@
   onMounted(async()=> {    // hydrating
     updateUserScreenPropertiesOnMounted()
     useEventListener('resize', ()=> { updateUserScreenPropertiesOnMounted() })
-    setTimeout(() => {      
-      displayMessageBoard('Welcome 🎵')
-    }, 500);
+      displayNotifier('Welcome 🎵', 2000)
     let dummy = await useFetch('/api/getOtherInfo') 
     getLastYieldUpdateOnMounted()
   })
@@ -38,8 +36,9 @@
     })      
   })
 
-  function displayMessageBoard(text) {
-    exposeMessageBoardRef.value.showMessageBoard(text.toString())
+  function displayNotifier(text, duration) {
+    console.log(text, duration);
+    exposeNotifierRef.value.showNotifier(text.toString(), duration)
   }
 
   function updateUserScreenPropertiesOnMounted() {   
@@ -56,7 +55,7 @@
 <template>
   <div>
     <Notifier 
-      ref="exposeMessageBoardRef"
+      ref="exposeNotifierRef"
     />
     <HeaderAttr v-if="!appStore.userScr.isMobileLandscape" />
 
@@ -78,7 +77,7 @@
       @updatetable-data="(data)=> appStore.buildTableData(data)"
       @updatechart-data="appStore.buildChartData()"
       @updateselected-year="(years)=> appStore.updateSelectedYear(years)"
-      @notify-msg-is="(txt)=> displayMessageBoard(txt)"
+      @notify-msg-is="(txt, dura)=> displayNotifier(txt, dura)"
     />
     <div
       v-show="!appStore.userScr.isMobileLandscape"

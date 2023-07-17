@@ -58,9 +58,8 @@
     function userSubmission(dataReceivedFromServer) {
         console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.yields.data.value
-        if(typeof arr === 'string') emiT('notifyMsgIs', "Data is bad 😅")
+        if(typeof arr === 'string') emiT('notifyMsgIs', "Data is bad 😅", 3000)
         if(typeof arr === 'string') return
-        
         let temp = []
         arr.forEach((obj, ind)=> {
             temp.push(JSON.parse(obj.yieldData))
