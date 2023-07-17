@@ -31,7 +31,6 @@
 
     async function fetchDataFromAirtable(btnType) {
         let temp = await useFetch('/api/getTable', { query: { userOptedYr: yearRange.value.toString() } })
-        console.log('fetchDataFromAirtable', temp);
         return { yields: temp, btn: btnType }
     }
 
@@ -57,7 +56,7 @@
         }
     }
     function userSubmission(dataReceivedFromServer) {
-        console.log('userSubmission:', dataReceivedFromServer.yields.data.value);
+        console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.yields.data.value
         if(typeof arr === 'string') emiT('notifyMsgIs', "Work in progress 😅")
         if(typeof arr === 'string') return
