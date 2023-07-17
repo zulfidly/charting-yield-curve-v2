@@ -3,9 +3,6 @@
   const exposeGoogChartRef = ref(null)
   const exposeMessageBoardRef = ref(null)
   const appStore = useMainStorePinia()
-  const errBoard = reactive({
-    arrYear: []
-  })
 
   useHead({
     title: 'Yield Curve Difference',
@@ -86,6 +83,7 @@
       v-show="!appStore.userScr.isMobileLandscape"
       class="pl-2 text-[11px] lg:text-sm text-right italic font-thin" >
       updated: {{ lastYieldUpdate }}
+      <div>*pending: solving Airtable's data being returned as DOCTYPE from Netlify</div>
     </div>
 
     <TableSummary 
@@ -93,8 +91,6 @@
       :prop-is-mobile-landscape="appStore.userScr.isMobileLandscape"
       :prop-scr-h="appStore.userScr.H"
     />
-    <section>
-      <p>{{ errBoard.arrYear }}</p>
-    </section>
+
   </div>
 </template>
