@@ -26,17 +26,13 @@
 
     for(let i = endYear; i>=startYear; i--) { arrYearDropList.value.push(i) }
 
-    const filteredOptionFrom = computed(()=> arrYearDropList.value.filter((x, y, z)=> {
-        return x.toString() <= selectYrTo.value
-    }))
-    const filteredOptionTo = computed(()=> arrYearDropList.value.filter((x, y, z)=> {
-        return x.toString() >= selectYrFrom.value
-    }))
+    const filteredOptionFrom = computed(()=> arrYearDropList.value.filter((x, y, z)=> { return x.toString() <= selectYrTo.value }))
+    const filteredOptionTo = computed(()=> arrYearDropList.value.filter((x, y, z)=> { return x.toString() >= selectYrFrom.value }))
 
     async function fetchDataFromAirtable(btnType) {
         let temp = await useFetch('/api/getTable', { query: { userOptedYr: yearRange.value.toString() } })
         console.log('fetchDataFromAirtable', temp);
-        return { 'data': temp, btn: btnType }
+        return { yields: temp, btn: btnType }
     }
 
     async function submitUserOptions(btnType) {
@@ -61,11 +57,11 @@
         }
     }
     function userSubmission(dataReceivedFromServer) {
-        console.log('userSubmission');
-        let arr = dataReceivedFromServer.data.data._rawValue
+        console.log('userSubmission:', dataReceivedFromServer.yields.data.value);
+        let arr = dataReceivedFromServer.yields.data.value
         let temp = []
         arr.forEach((obj, ind)=> {
-            temp.push(JSON.parse(obj.datA))
+            temp.push(JSON.parse(obj.yieldData))
         })
         emiT('updatetableData', temp.flat())        
         emiT('updateisFetching', false)

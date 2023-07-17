@@ -19,7 +19,7 @@ export async function readTable1(years) {
                     records.forEach(function(record, ind) {         
                         // console.log(ind, 'record:',record);           
                         if(years.includes(record.get('year').trim())) {                            
-                            temp.push({ year: record.get('year'), datA: record.get('daily') || '' })
+                            temp.push({ year: record.get('year'), yieldData: record.get('daily') || '' })
                             // temp.push({ year: record._rawJson.fields.year, datA: record._rawJson.fields.jsoN || '' })
                         } 
                     });
@@ -27,6 +27,6 @@ export async function readTable1(years) {
             }
         })
     })
-    console.log(await promise);
+    // console.log(await promise);
     return await promise
 }
