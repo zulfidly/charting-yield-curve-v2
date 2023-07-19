@@ -38,10 +38,10 @@
 - ```{"extends": "../.nuxt/tsconfig.server.json"}```
 
 ## install [Pinia](https://pinia.vuejs.org/ssr/nuxt.html)
+- add ```overrides``` added to package.json
 - ```npm install pinia @pinia/nuxt```
 - ```export const useMainStorePinia = defineStore('appStore', {})```, dir: ```./composables/mainState.js``` 
 - see ```@pinia/nuxt``` in nuxt.config.js
-- see ```overrides``` added to package.json
 - see ```./composables/mainState.js```
 
 ## add [Airtable](https://www.airtable.com/)
