@@ -10,7 +10,7 @@ export default defineEventHandler(async(event) => {
         base(process.env.AT_yearly_TABLE_ID)
         .select({ view: 'Grid view' })
         .firstPage(function(err, records) {     // 100 records per page by default
-            if(err) reject(JSON.stringify(err))
+            if(err) reject( { statusCode: 500, erroR: JSON.stringify(err) } )
             else {
                 let temp = []
                     records.forEach(function(record, ind) {         
