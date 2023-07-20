@@ -15,7 +15,8 @@
       displayNotifier('Welcome 🎵', 2000)
     let dummy = await useFetch('/api/getOtherInfo') 
     getLastYieldUpdateOnMounted()
-    let temp = await useFetch('/api/getTable', { query: { userOptedYr: ['2022'].toString() } })
+    let arr = ['2022']
+    let temp = await useFetch('/api/getTable', { query: { userOptedYr: arr.toString() } })
     console.log(temp);
   })
   async function getLastYieldUpdateOnMounted() {
