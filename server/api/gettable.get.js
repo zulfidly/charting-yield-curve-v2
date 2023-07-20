@@ -19,7 +19,7 @@ export default defineEventHandler(async(event) => {
                             temp.push({ year: record.get('year'), yieldData: record.get('daily') || '' })
                         } 
                     });
-                resolve({ statusCode: 200, atData: temp } )
+                resolve(temp)
             }
         })
     })
