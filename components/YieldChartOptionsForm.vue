@@ -31,7 +31,7 @@
 
     async function fetchDataFromAirtable(btnType) {
         // const { data, pending, error, refresh }  = await useFetch('/api/getTable', 
-        const temp  = await useFetch('/api/getTable', 
+        const temp  = await useLazyFetch('/api/getTable', 
             {
                 query: { userOptedYr: yearRange.value.toString() },
                 server: false,      
@@ -68,7 +68,10 @@
     function userSubmission(dataReceivedFromServer) {
         console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.yields.data.value
-        if(typeof arr === 'string') emiT('notifyMsgIs', "Data is bad 😅", 3000)
+        if(typeof arr === 'string') {
+            emiT('notifyMsgIs', "Data is bad 😅", 3000)
+            // emiT('updateisFetching', false)
+        }
         if(typeof arr === 'string') return
         let temp = []
         arr.forEach((obj, ind)=> {

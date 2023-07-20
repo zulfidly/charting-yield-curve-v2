@@ -19,7 +19,6 @@
     getLastYieldUpdateOnMounted()
   })
   async function getLastYieldUpdateOnMounted() {
-    console.log(lastYieldUpdate.value);
     const { data: temp } = lastYieldUpdate.value
     let lastYield = JSON.parse(temp)
     console.log(lastYield);
