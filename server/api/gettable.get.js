@@ -6,6 +6,7 @@ export default defineEventHandler(async(event) => {
     let years = getQuery(event).userOptedYr
     years = years.split(',')
     console.log(years);
+    years = '2023'
     return await new Promise(function(resolve, reject) {
         base(process.env.AT_yearly_TABLE_ID)
         .select({ view: 'Grid view' })
