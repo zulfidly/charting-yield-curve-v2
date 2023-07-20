@@ -30,7 +30,17 @@
     const filteredOptionTo = computed(()=> arrYearDropList.value.filter((x, y, z)=> { return x.toString() >= selectYrFrom.value }))
 
     async function fetchDataFromAirtable(btnType) {
-        let temp = await useFetch('/api/getTable', { query: { userOptedYr: yearRange.value.toString() } })
+        // const { data, pending, error, refresh }  = await useFetch('/api/getTable', 
+        const temp  = await useFetch('/api/getTable', 
+            {
+                query: { userOptedYr: yearRange.value.toString() },
+                server: false,      
+                watch: false,       // settings for fully manual useFetch()
+                // immediate: false,   // settings for fully manual useFetch()
+                onRequestError({ request, options, error }) { console.log('erroR:', error) },
+                onResponseError({ request, options, error }) { console.log('erroR:', error) },
+            }
+        )
         return { yields: temp, btn: btnType }
     }
 
@@ -57,7 +67,7 @@
     }
     function userSubmission(dataReceivedFromServer) {
         console.log(dataReceivedFromServer);
-        let arr = dataReceivedFromServer.yields.data.value
+        let arr = dataReceivedFromServer.yields.data.value.atData
         if(typeof arr === 'string') emiT('notifyMsgIs', "Data is bad 😅", 3000)
         if(typeof arr === 'string') return
         let temp = []

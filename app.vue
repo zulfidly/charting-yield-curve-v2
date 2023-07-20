@@ -9,20 +9,21 @@
     htmlAttrs:{ lang:'en' },
   })
 
+  // lastYieldUpdate.value = "{\"utc\":\"2023-07-15T05:46:22.337Z\",\"utc_ms\":1689399982337}"
+  lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
+  // let dummy = await useFetch('/api/getOtherInfo') 
   onMounted(async()=> {    // hydrating
     updateUserScreenPropertiesOnMounted()
     useEventListener('resize', ()=> { updateUserScreenPropertiesOnMounted() })
-      displayNotifier('Welcome 🎵', 2000)
-    let dummy = await useFetch('/api/getOtherInfo') 
+    displayNotifier('Welcome 🎵', 2000)
     getLastYieldUpdateOnMounted()
-    let arr = ['2022']
-    let temp = await useFetch('/api/getTable', { query: { userOptedYr: arr.toString() } })
-    console.log(temp);
   })
   async function getLastYieldUpdateOnMounted() {
-    let temp = await useFetch('/api/getLastYieldUpdate')
-    temp = JSON.parse(temp.data.value)
-    lastYieldUpdate.value = new Date(temp.utc_ms)
+    console.log(lastYieldUpdate.value);
+    const { data: temp } = lastYieldUpdate.value
+    let lastYield = JSON.parse(temp)
+    console.log(lastYield);
+    lastYieldUpdate.value = new Date(lastYield.utc_ms)
   }
 
   onNuxtReady(()=> {  // hydrated
@@ -40,7 +41,7 @@
   })
 
   function displayNotifier(text, duration) {
-    console.log(text, duration);
+    // console.log(text, duration);
     exposeNotifierRef.value.showNotifier(text.toString(), duration)
   }
 

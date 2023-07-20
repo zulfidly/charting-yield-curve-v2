@@ -4,7 +4,7 @@
     defineExpose({ showNotifier })
 
     const card = {
-        init: ['fixed z-10 mt-3 w-11/12 p-3 left-1/2 -translate-x-1/2 text-center bg-orange-300 rounded-xl text-xl tracking-wider text-[var(--vt-c-indigo)] transition-all duration-700'],
+        init: ['fixed z-10 mt-3 w-11/12 p-3 left-1/2 -translate-x-1/2 text-center bg-slate-300 rounded-xl text-xl tracking-wider text-[var(--vt-c-indigo)] transition-all duration-700'],
         show: ['opacity-100 top-0'],
         hide: ['opacity-0 -top-full'],
     }
