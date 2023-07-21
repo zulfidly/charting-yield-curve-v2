@@ -9,7 +9,6 @@
     htmlAttrs:{ lang:'en' },
   })
 
-  // lastYieldUpdate.value = "{\"utc\":\"2023-07-15T05:46:22.337Z\",\"utc_ms\":1689399982337}"
   lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
   // let dummy = await useFetch('/api/getOtherInfo') 
   onMounted(async()=> {    // hydrating

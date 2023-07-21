@@ -67,7 +67,7 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
         .update([
             {
             "id": recID,
-            "fields": { "daily": dataAT }        // can change jsoN to env ?
+            "fields": { "daily": dataAT }        // can change 'daily' to env ?
             }
         ],
         function(err, records) {
