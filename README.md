@@ -31,8 +31,8 @@
 
 ## Adding Tailwind CSS 
 - ```npm install -D @nuxtjs/tailwindcss```
-- ```npx tailwindcss init -p``` (create tailwindcss.config.js & postcss.config.js inside root folder)
-- see ```@nuxtjs/tailwindcss``` in nuxt.config.js
+- ```npx tailwindcss init -p``` (tailwindcss.config.js & postcss.config.js created inside root folder)
+- see ```@nuxtjs/tailwindcss``` inside ```modules``` in  ```nuxt.config.js```
 
 ## deleted /server/tsconfig.json, content as below
 - ```{"extends": "../.nuxt/tsconfig.server.json"}```

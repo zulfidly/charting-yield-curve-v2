@@ -67,14 +67,16 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
         .update([
             {
             "id": recID,
-            "fields": { "jsoN": dataAT }        // can change jsoN to env ?
+            "fields": { "daily": dataAT }        // can change jsoN to env ?
             }
         ],
         function(err, records) {
             if (err) {
+                console.log('update rejected');
                 reject({ statusCode: 500, body:JSON.stringify(err) })
             return;
             } else {
+                console.log('updating Airtable record...');
                 resolve({ statusCode: 200, body:'update successful' })
                 updateLastYieldUpdateFieldInOtherInfo()
             }
