@@ -13,13 +13,15 @@ export default defineEventHandler(async(event) => {
         .firstPage(function(err, records) {     // 100 records per page by default
             if(err) reject( { statusCode: 500, erroR: JSON.stringify(err) } )
             else {
-                let temp = []
+                // let temp = []
                     records.forEach(function(record, ind) {         
                         if(years.includes(record.get('year').trim())) {                            
-                            temp.push({ year: record.get('year'), yieldData: record.get('daily') || '' })
+                            // temp.push({ year: record.get('year'), yieldData: record.get('daily') || '' })
+                            // resolve([{ year: record.get('year'), yieldData: record.get('daily') || '' }])
+                            resolve(record.get('year'))
                         } 
                     });
-                resolve(temp)
+                // resolve(temp)
             }
         })
     })
