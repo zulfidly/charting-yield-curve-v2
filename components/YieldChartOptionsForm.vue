@@ -31,7 +31,7 @@
 
     async function fetchDataFromAirtable(btnType) {
         // const { data, pending, error, refresh }  = await useFetch('/api/getTable', 
-        const temp  = await useFetch('/api/getTable', 
+        const temp  = await useFetch('/api/getTable2', 
             {
                 query: { userOptedYr: yearRange.value.toString() },
                 // server: false,      
