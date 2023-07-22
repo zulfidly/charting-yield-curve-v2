@@ -18,7 +18,8 @@ export default defineEventHandler(async(event) => {
                         if(years.includes(record.get('year').trim())) {                            
                             // temp.push({ year: record.get('year'), yieldData: record.get('daily') || '' })
                             // resolve([{ year: record.get('year'), yieldData: record.get('daily') || '' }])
-                            resolve(record.get('year'))
+                            resolve(record.get('year').toString())
+                            console.log(record);
                         } 
                     });
                 // resolve(temp)
