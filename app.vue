@@ -9,13 +9,13 @@
     htmlAttrs:{ lang:'en' },
   })
 
-  lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
+  // lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
   // let dummy = await useFetch('/api/getOtherInfo') 
   onMounted(async()=> {    // hydrating
     updateUserScreenPropertiesOnMounted()
     useEventListener('resize', ()=> { updateUserScreenPropertiesOnMounted() })
     displayNotifier('Welcome 🎵', 2000)
-    getLastYieldUpdateOnMounted()
+    // getLastYieldUpdateOnMounted()
   })
   async function getLastYieldUpdateOnMounted() {
     const { data: temp } = lastYieldUpdate.value
@@ -50,7 +50,7 @@
     appStore.m_userScrIsMobileLandscape()
     appStore.m_userScrOrientation()
     appStore.m_userScrRatioWH()
-    // appStore.m_listenIsDark()
+    appStore.m_userScrIsDarkDevice()
   }
 </script>
 

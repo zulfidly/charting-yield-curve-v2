@@ -31,10 +31,10 @@
 
     async function fetchDataFromAirtable(btnType) {
         // const { data, pending, error, refresh }  = await useFetch('/api/getTable', 
-        const temp  = await useLazyFetch('/api/getTable', 
+        const temp  = await useFetch('/api/getTable', 
             {
                 query: { userOptedYr: yearRange.value.toString() },
-                server: false,      
+                // server: false,      
                 watch: false,       // settings for fully manual useFetch()
                 // immediate: false,   // settings for fully manual useFetch()
                 onRequestError({ request, options, error }) { console.log('erroR:', error) },
