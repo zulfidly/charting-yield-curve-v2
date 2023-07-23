@@ -7,7 +7,8 @@ export default defineEventHandler(async(event) => {
     yearsQuery = yearsQuery.split(',')
     console.log('yearsQuery:', yearsQuery);
 
-        let ext = 'json_recId_' + yearsQuery.toString()
+        let ext = 'json_recId_' + '2023'
+        // let ext = 'json_recId_' + yearsQuery.toString()
         let promise = new Promise(function(resolve, reject) {
             base(process.env.AT_yearly_TABLE_ID)
             .find(process.env[ext], function(err, record) {
