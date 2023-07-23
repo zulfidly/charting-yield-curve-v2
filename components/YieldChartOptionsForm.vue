@@ -78,13 +78,14 @@
             console.log(temp, typeof temp);
 
             let promises = []
-            temp.forEach(async(yr, ind)=> {
-                console.log('yearCLient:', yr);
-                const temp = await useFetch('/api/getTable',  { query: { userOptedYr: yr.toString() } })   
-                promises.push(temp) 
-                console.log('temp', temp);
-                console.log('porpp', promises);                         
-            })
+                const temp2 = await useFetch('/api/getTable')   
+            // temp.forEach(async(yr, ind)=> {
+            //     console.log('yearCLient:', yr);
+            //     const temp = await useFetch('/api/getTable',  { query: { userOptedYr: yr.toString() } })   
+            //     promises.push(temp) 
+                console.log('temp2', temp2);
+            //     console.log('porpp', promises);                         
+            // })
             // Promise.all(promises)
             // .then(result=> console.log(result))
 
