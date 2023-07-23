@@ -7,34 +7,17 @@ export default defineEventHandler(async(event) => {
     yearsQuery = yearsQuery.split(',')
     console.log('yearsQuery:', yearsQuery);
 
-    let promises = []
-    // yearsQuery.forEach((yr, ind) => {
-        let ext = 'json_recId_' + '2020'
+        let ext = 'json_recId_' + yearsQuery.toString()
         let promise = new Promise(function(resolve, reject) {
             base(process.env.AT_yearly_TABLE_ID)
             .find(process.env[ext], function(err, record) {
                 if (err) { 
                     reject( { statusCode:500, erroRR:JSON.stringify(err) } )
                 } else {
-                    resolve(JSON.stringify(record.fields.daily))
+                    resolve(record.fields.daily)
                 }
             })    
         })
-        // promises.push(promise)
-    // });
-    // console.log(promises);
     return await promise
-    // return await Promise.all(promises)
-    // .then((res)=> {
-    //     let temp = JSON.parse(res)
-    //     // temp = res.flat()
-
-    //     // temp = JSON.stringify(temp)
-    //     console.log('resss', temp)
-    //     return temp
-    // })
-    // .catch((err)=> {        
-    //     console.log(err)
-    // })
 })
 
