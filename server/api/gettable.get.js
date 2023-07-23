@@ -23,18 +23,18 @@ export default defineEventHandler(async(event) => {
         promises.push(promise)
     });
     console.log(promises);
-    
-    return await Promise.all(promises)
-    .then((res)=> {
-        let temp = JSON.parse(res)
-        // temp = res.flat()
+    return promises
+    // return await Promise.all(promises)
+    // .then((res)=> {
+    //     let temp = JSON.parse(res)
+    //     // temp = res.flat()
 
-        // temp = JSON.stringify(temp)
-        console.log('resss', temp)
-        return temp
-    })
-    .catch((err)=> {        
-        console.log(err)
-    })
+    //     // temp = JSON.stringify(temp)
+    //     console.log('resss', temp)
+    //     return temp
+    // })
+    // .catch((err)=> {        
+    //     console.log(err)
+    // })
 })
 
