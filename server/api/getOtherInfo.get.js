@@ -19,7 +19,7 @@ export default defineEventHandler(async(event) => {
       }
     })
   })
-  return  await promise
+  return await promise
 }) 
 
 function updateCount(newcount) {

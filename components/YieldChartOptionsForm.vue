@@ -43,7 +43,7 @@
         )
         return { yields: temp, btn: btnType }
     }
-
+    // https://api.airtable.com/v0/appSmZwlF4ZHq6Ezk/tblasXd6MLwuEWVoz?fields%5B%5D=daily
     async function submitUserOptions(btnType) {
         console.log(btnType);
         yearRange.value = []
