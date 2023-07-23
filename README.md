@@ -45,6 +45,7 @@
 
 ## add [Airtable](https://www.airtable.com/)
 - ```npm install airtable```
+- see Airtable's [rate limit]()
 
 ## add [Netlify Function](https://www.netlify.com/products/functions/)
 - ```npm install @netlify/functions``` 
