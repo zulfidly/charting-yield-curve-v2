@@ -8,8 +8,8 @@ export default defineEventHandler(async(event) => {
     console.log('yearsQuery:', yearsQuery);
 
     let promises = []
-    yearsQuery.forEach(async(yr, ind) => {
-        let ext = 'json_recId_' + yr.toString()
+    // yearsQuery.forEach((yr, ind) => {
+        let ext = 'json_recId_' + '2020'
         let promise = new Promise(function(resolve, reject) {
             base(process.env.AT_yearly_TABLE_ID)
             .find(process.env[ext], function(err, record) {
@@ -20,10 +20,10 @@ export default defineEventHandler(async(event) => {
                 }
             })    
         })
-        promises.push(promise)
-    });
-    console.log(promises);
-    return promises
+        // promises.push(promise)
+    // });
+    // console.log(promises);
+    return await promise
     // return await Promise.all(promises)
     // .then((res)=> {
     //     let temp = JSON.parse(res)
