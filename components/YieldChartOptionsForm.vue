@@ -95,9 +95,7 @@
             }
         }
     }
-    function createIndividualPromise() {
-
-    }
+ 
     function userSubmission(dataReceivedFromServer) {
         console.log(dataReceivedFromServer);
         let arr = dataReceivedFromServer.yields.data.value
