@@ -43,23 +43,10 @@
         )
         return { yields: temp, btn: btnType }
     }
-    async function fetchDataFromAirtable2(btnType, year) {
-        // const { data, pending, error, refresh }  = await useFetch('/api/getTable', 
-        const temp  = await useFetch('/api/getTable', 
-            {
-                query: { userOptedYr: year.toString() },
-                // server: false,      
-                watch: false,       // settings for fully manual useFetch()
-                // immediate: false,   // settings for fully manual useFetch()
-                onRequestError({ request, options, error }) { console.log('erroR:', error) },
-                onResponseError({ request, options, error }) { console.log('erroR:', error) },
-            }
-        )
-        return { yields: temp, btn: btnType }
-    }
+    
     // https://api.airtable.com/v0/appSmZwlF4ZHq6Ezk/tblasXd6MLwuEWVoz?fields%5B%5D=daily
     async function submitUserOptions(btnType) {
-        console.log(btnType);
+        // console.log(btnType);
         yearRange.value = []
         for(let i = Number(selectYrFrom.value); i <= Number(selectYrTo.value); i++) {
             yearRange.value.push(i)
@@ -73,25 +60,23 @@
         else {
             emiT('updateisFetching', true)
             emiT('updateselectedYear', yearRange.value)
-            console.log(yearRange.value, typeof yearRange.value);
+            // console.log(yearRange.value, typeof yearRange.value);
             let temp = [...yearRange.value]            
-            console.log(temp, typeof temp);
+            // console.log(temp, typeof temp);
 
             let promises = []
                 // const temp2 = await useFetch('/api/getTable')   
             temp.forEach(async(yr, ind)=> {
-                console.log('yearCLient:', yr);
+                // console.log('yearCLient:', yr);
                 const temp = useFetch('/api/getTable',  { query: { userOptedYr: yr.toString() } })   
                 promises.push(temp) 
                 // console.log('temp2', temp2);
             })
-            console.log(promises);
+            // console.log(promises);
             //     console.log('porpp', promises);                         
             // Promise.all(promises)
             // .then(result=> console.log(result))
-
-
-            // userSubmission(await fetchDataFromAirtable(btnType))
+            userSubmission(await fetchDataFromAirtable(btnType))
             if(btnType === 'viewChart' && props.propIsChartShowing === false) {
                 emiT('viewChart') // display chart
             }

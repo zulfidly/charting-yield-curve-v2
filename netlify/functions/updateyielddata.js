@@ -76,9 +76,9 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
                 reject({ statusCode: 500, body:JSON.stringify(err) })
             return;
             } else {
+                updateLastYieldUpdateFieldInOtherInfo()
                 console.log('updating Airtable record...');
                 resolve({ statusCode: 200, body:'update successful' })
-                updateLastYieldUpdateFieldInOtherInfo()
             }
         })
     })

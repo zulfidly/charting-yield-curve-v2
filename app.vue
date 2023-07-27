@@ -9,18 +9,18 @@
     htmlAttrs:{ lang:'en' },
   })
 
-  // lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
+  lastYieldUpdate.value = await useFetch('/api/getLastYieldUpdate')
   // let dummy = await useFetch('/api/getOtherInfo') 
   onMounted(async()=> {    // hydrating
     updateUserScreenPropertiesOnMounted()
     useEventListener('resize', ()=> { updateUserScreenPropertiesOnMounted() })
     displayNotifier('Welcome 🎵', 2000)
-    // getLastYieldUpdateOnMounted()
+    getLastYieldUpdateOnMounted()
   })
   async function getLastYieldUpdateOnMounted() {
     const { data: temp } = lastYieldUpdate.value
     let lastYield = JSON.parse(temp)
-    console.log(lastYield);
+    // console.log(lastYield);
     lastYieldUpdate.value = new Date(lastYield.utc_ms)
   }
 
