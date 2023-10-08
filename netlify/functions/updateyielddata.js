@@ -86,7 +86,7 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
 
 function updateLastYieldUpdateFieldInOtherInfo() {
     let date = { 'utc' : new Date(), 'utc_ms': Date.now() }
-    base(process.env.AT_visitorcount_TABLE_ID)
+    base(process.env.fld8URJjFDl0SqFzB)
     .update([
         {
           "id": process.env.otherInfo_recordId,
