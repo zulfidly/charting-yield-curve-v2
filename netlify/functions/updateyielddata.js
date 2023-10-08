@@ -28,11 +28,11 @@ async function scrapeForDataMatchingCurrentYear() {
     return await fetch(endpoint + yearUTC, {mode:'cors'})
     .then((response) => response.text())
     .then((data) => { 
-        console.log('then() scrapeForDataMatchingCurrentYear');
+        // console.log('then() scrapeForDataMatchingCurrentYear');
         return structurePerDayObj( getRowsFromTable(stringSlicer(data, '<tbody>', '</tbody>')) ) 
     })
     .catch((err)=> {
-        console.log('catch() scrapeForDataMatchingCurrentYear');
+        // console.log('catch() scrapeForDataMatchingCurrentYear');
         return { statusCode: 500, error: 'catch() scrapeForDataMatchingCurrentYear' }
     })
 }
@@ -67,12 +67,12 @@ async function updateAirtableRecordMatchingCurrentYear(mergedPromise) {
         .update([
             {
             "id": recID,
-            "fields": { "daily": dataAT }        // can change 'daily' to env ?
+            "fields": { daily: dataAT }        // can change 'daily' to env ?
             }
         ],
         function(err, records) {
             if (err) {
-                console.log('update rejected');
+                // console.log('update rejected');
                 reject({ statusCode: 500, body:JSON.stringify(err) })
             return;
             } else {
@@ -95,7 +95,7 @@ function updateLastYieldUpdateFieldInOtherInfo() {
       ],
       function(err, records) {
         if (err) {
-          console.error('updateDateError:', err);
+        //   console.error('updateDateError:', err);
           return;
         }
     });  
@@ -105,24 +105,24 @@ function structurePerDayObj(arr) {
     let tempArr = []
     arr.forEach((entry, ind)=> {
         let dayObj = {
-            'date': getCellData('time', entry.rowData),
-            '1mth': getCellData('1month', entry.rowData),
-            '2mth': getCellData('2month', entry.rowData),
-            '3mth': getCellData('3month', entry.rowData),
-            '4mth': getCellData('4month', entry.rowData),
-            '6mth': getCellData('6month', entry.rowData),
-            '1yr': getCellData('1year', entry.rowData),
-            '2yr': getCellData('2year', entry.rowData),
-            '3yr': getCellData('3year', entry.rowData),
-            '5yr': getCellData('5year', entry.rowData),
-            '7yr': getCellData('7year', entry.rowData),
-            '10yr': getCellData('10year', entry.rowData),
-            '20yr': getCellData('20year', entry.rowData),
-            '30yr': getCellData('30year', entry.rowData),
+            date: getCellData('time', entry.rowData),
+            // '1mth': getCellData('1month', entry.rowData),
+            TwoMonth: getCellData('2month', entry.rowData),
+            // '3mth': getCellData('3month', entry.rowData),
+            // '4mth': getCellData('4month', entry.rowData),
+            // '6mth': getCellData('6month', entry.rowData),
+            // '1yr': getCellData('1year', entry.rowData),
+            TwoYear: getCellData('2year', entry.rowData),
+            // '3yr': getCellData('3year', entry.rowData),
+            // '5yr': getCellData('5year', entry.rowData),
+            // '7yr': getCellData('7year', entry.rowData),
+            TenYear: getCellData('10year', entry.rowData),
+            // '20yr': getCellData('20year', entry.rowData),
+            // '30yr': getCellData('30year', entry.rowData),
         }
     tempArr.push(dayObj)
     })  // forEach loop
-    return tempArr
+    return JSON.stringify(tempArr)
 } 
 function getRowsFromTable(string) {
     let balstr = string.toString()
